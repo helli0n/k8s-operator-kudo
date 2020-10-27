@@ -2,12 +2,12 @@
 I assume that minikube/EKS/K8S cluster already installed  
   ## 1. Installation cert-manager  
 ```
-kubectl apply - validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
-kubectl get pods - namespace cert-manager # to check if pods are running
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
+kubectl get pods --namespace cert-manager # to check if pods are running
 ```
   ## 2. Init kudo  
 ```
-kubectl kudo init - version 0.17.0
+kubectl kudo init --version 0.17.0
 ```
   ## 3. Build test docker container  
   You need to clone hello-world repo first!  
