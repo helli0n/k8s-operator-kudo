@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+spec:
+  selector:
+    matchLabels:
+      app: hello-app
+  replicas: {{ .Params.replicas }} # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+        - name: hello-app
+          image: "hello:{{ .Params.appVersion}}"
+          ports:
+            - containerPort: 8080

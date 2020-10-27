@@ -1,0 +1,33 @@
+apiVersion: kudo.dev/v1beta1
+name: "test-app"
+operatorVersion: "0.0.1"
+kudoVersion: 0.17.0
+kubernetesVersion: 1.15.0
+appVersion: 1.0.0
+maintainers:
+  - name: Dmytro Vedetskyi
+    email: dvedetskyi@intellias.com
+tasks:
+  - name: deployment
+    kind: Apply
+    spec:
+      resources:
+        - deployment.yaml
+  - name: service
+    kind: Apply
+    spec:
+      resources:
+        - services.yaml
+
+plans:
+  deploy:
+    strategy: serial
+    phases:
+      - name: dependencies
+        strategy: serial
+        steps:
+          - name: hello-app
+            tasks:
+              - deployment
+              - service
+
